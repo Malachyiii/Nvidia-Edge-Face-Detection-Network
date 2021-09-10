@@ -22,12 +22,17 @@ while(True):
     # gray here is the gray frame you will be getting from a camera
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    cv.imshow('frame',gray)
     for (x,y,w,h) in faces:
     	# your logic goes here; for instance
     	# cut out face from the frame..
+        cv.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
         face = frame[y:y+h, x:x+w]
         rc,png = cv.imencode('.png', face)
         msg = png.tobytes()
         local_mqttclient.publish(LOCAL_MQTT_TOPIC, msg)
+    
+    cv.imshow('frame',gray)
+    
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
