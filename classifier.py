@@ -1,9 +1,10 @@
 import numpy as np
 import cv2 as cv
 import paho.mqtt.client as mqtt
+import time
 
 LOCAL_MQTT_HOST="localhost"
-LOCAL_MQTT_PORT=1833
+LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="test_topic"
 
 def on_connect_local(client, userdata, flags, rc):
@@ -13,9 +14,16 @@ local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
 local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
 
-face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
-
 cap = cv.VideoCapture(0)
+
+while(cap.isOpened()==False):
+    print("Waiting for connection...")
+    time.sleep(5)
+
+print("Video Connected...")
+
+face_cascade = cv.CascadeClassifier('/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
+print("Classifier Created")
 
 while(True):
     ret, frame = cap.read()
@@ -26,7 +34,8 @@ while(True):
     for (x,y,w,h) in faces:
     	# your logic goes here; for instance
     	# cut out face from the frame..
-        cv.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+        cv.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
+        cv.imshow('frame',gray)
         face = frame[y:y+h, x:x+w]
         rc,png = cv.imencode('.png', face)
         msg = png.tobytes()
@@ -36,3 +45,6 @@ while(True):
     
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
+
+cap.release()
+cv.destroyAllWindows()
