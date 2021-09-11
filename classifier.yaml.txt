@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classifier-deployment
+spec:
+  selector:
+    matchLabels:
+      app: classifier
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: classifier
+    spec:
+      containers:
+      - name: broker
+        image: malachyiii/broker:v1
+        ports:
+        - containerPort: 1883
+      - name: listener
+        image: malachyiii/listener:v1
+        ports:
+        - containerPort: 1883
+      - name: classifier
+        image: malachyiii/classifier:v1
+        ports:
+        - containerPort: 1883

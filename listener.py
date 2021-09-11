@@ -1,9 +1,9 @@
 import paho.mqtt.client as mqtt
 
 
-LOCAL_MQTT_HOST="localhost"
+LOCAL_MQTT_HOST="classifier_service"
 LOCAL_MQTT_PORT=1883
-LOCAL_MQTT_TOPIC="test_topic"
+LOCAL_MQTT_TOPIC="faces"
 
 def on_connect_local(client, userdata, flags, rc):
         print("connected to local broker with rc: " + str(rc))
