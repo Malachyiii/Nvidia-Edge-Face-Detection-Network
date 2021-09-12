@@ -7,24 +7,6 @@ LOCAL_MQTT_HOST="mosquitto-service"
 LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="detected"
 
-is_connected = 0
-
-def on_connect_local(client, userdata, flags, rc):
-        print("connected to local broker with rc: " + str(rc))
-        if rc ==0:
-            global is_connected
-            is_connected = 1
-
-local_mqttclient = mqtt.Client()
-local_mqttclient.on_connect = on_connect_local
-
-local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
-
-while is_connected != 1:
-    time.sleep(30)
-    print("Reconnecting...")
-    local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
-
 cap = cv.VideoCapture(0)
 
 while(cap.isOpened()==False):
@@ -35,6 +17,23 @@ print("Video Connected...")
 
 face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 print("Classifier Created")
+
+is_connected = 0
+
+def on_connect_local(client, userdata, flags, rc):
+        print("connected to local broker with rc: " + str(rc))
+        client.subscribe(LOCAL_MQTT_TOPIC)
+        if rc ==0:
+            global is_connected
+            is_connected = 1
+
+
+local_mqttclient = mqtt.Client()
+local_mqttclient.on_connect = on_connect_local
+local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
+local_mqttclient.loop_start()
+print("is connected: " + str(is_connected))
+
 
 while(True):
     ret, frame = cap.read()
@@ -61,4 +60,4 @@ while(True):
 cap.release()
 cv.destroyAllWindows()
 
-local_mqttclient.loop_forever()
+local_mqttclient.loop_stop()
