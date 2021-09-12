@@ -15,3 +15,8 @@ spec:
       containers:
       - name: classifier
         image: malachyiii/classifier
+        env:
+        - name: DISPLAY
+          value: :0
+        securityContext:
+          privileged: true

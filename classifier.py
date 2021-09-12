@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 import time
 
 LOCAL_MQTT_HOST="mosquitto-service"
-LOCAL_MQTT_PORT=32752
+LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="faces"
 
 def on_connect_local(client, userdata, flags, rc):
@@ -22,7 +22,7 @@ while(cap.isOpened()==False):
 
 print("Video Connected...")
 
-face_cascade = cv.CascadeClassifier('/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
+face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 print("Classifier Created")
 
 while(True):
