@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mosquitto-service
   labels:
-    run: broker
+    run: mosquitto
 spec:
   type: NodePort
   ports:

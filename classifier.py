@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 import time
 
 LOCAL_MQTT_HOST="mosquitto-service"
-LOCAL_MQTT_PORT=1883
+LOCAL_MQTT_PORT=32752
 LOCAL_MQTT_TOPIC="faces"
 
 def on_connect_local(client, userdata, flags, rc):
