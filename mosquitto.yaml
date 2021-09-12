@@ -1,17 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: listener
+  name: mosquitto-deployment
 spec:
   selector:
     matchLabels:
-      app: listener
+      app: mosquitto
   replicas: 1 # tells deployment to run 1 pods matching the template
   template:
     metadata:
       labels:
-        app: listener
+        app: mosquitto
     spec:
       containers:
-      - name: listener
-        image: malachyiii/listener:v3
+      - name: mosquitto
+        image: malachyiii/broker
+        ports:
+        - containerPort: 1883

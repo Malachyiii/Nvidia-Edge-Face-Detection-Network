@@ -13,10 +13,6 @@ spec:
         app: classifier
     spec:
       containers:
-      - name: broker
-        image: malachyiii/broker
-        ports:
-        - containerPort: 1883
       - name: listener
         image: malachyiii/listener
       - name: classifier
