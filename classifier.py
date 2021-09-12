@@ -7,17 +7,22 @@ LOCAL_MQTT_HOST="mosquitto-service"
 LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="detected"
 
+is_connected = 0
+
 def on_connect_local(client, userdata, flags, rc):
         print("connected to local broker with rc: " + str(rc))
-        global is_connected = 1
+        if rc ==0:
+            global is_connected
+            is_connected = 1
 
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
 
 local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
 
-if is_connected != 1:
+while is_connected != 1:
     time.sleep(30)
+    print("Reconnecting...")
     local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
 
 cap = cv.VideoCapture(0)
