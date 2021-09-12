@@ -1,4 +1,3 @@
 FROM alpine:3.13
 RUN apk add mosquitto=1.6.12-r3
-COPY mosquitto_br.conf mosquitto_br.conf
-CMD mosquitto -c mosquitto_br.conf
+CMD mosquitto
