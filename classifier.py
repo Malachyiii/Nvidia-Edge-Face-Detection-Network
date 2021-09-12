@@ -31,10 +31,11 @@ while(True):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     for (x,y,w,h) in faces:
-    	# your logic goes here; for instance
+        print("Face seen")
+        # your logic goes here; for instance
     	# cut out face from the frame..
-        cv.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
-        cv.imshow('frame',gray)
+        #cv.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
+        #cv.imshow('frame',gray)
         face = frame[y:y+h, x:x+w]
         rc,png = cv.imencode('.png', face)
         msg = png.tobytes()
