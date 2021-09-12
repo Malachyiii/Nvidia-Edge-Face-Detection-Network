@@ -39,6 +39,7 @@ while(True):
         face = frame[y:y+h, x:x+w]
         rc,png = cv.imencode('.png', face)
         msg = png.tobytes()
+        print(str(msg))
         local_mqttclient.publish(LOCAL_MQTT_TOPIC, msg)
     
     #cv.imshow('frame',gray)
