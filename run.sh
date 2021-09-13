@@ -13,4 +13,5 @@ kubectl apply -f mosquitto.yaml
 kubectl apply -f mosquittoService.yaml
 kubectl apply -f classifier.yaml
 kubectl apply -f listener.yaml
+kubectl apply -f repub.yaml
 
