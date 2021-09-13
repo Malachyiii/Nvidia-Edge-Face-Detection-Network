@@ -13,9 +13,9 @@ def on_connect_local(client, userdata, flags, rc):
 	
 def on_message(client,userdata, msg):
   try:
-    print("message received",str(msg.payload))
-    image = np.asarray(msg, dtype="uint8")
-    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    print("message received")
+    image = np.frombuffer(msg.payload, dtype="uint8")
+    image = cv.imdecode(image, cv.IMREAD_COLOR)
     print("image decoded")
   except:
     print("Unexpected error:", sys.exc_info()[0])
