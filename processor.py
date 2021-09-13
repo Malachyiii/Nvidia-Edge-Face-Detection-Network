@@ -20,7 +20,7 @@ def on_message(client,userdata, msg):
     image = np.frombuffer(msg.payload, dtype="uint8")
     image = cv.imdecode(image, cv.IMREAD_COLOR)
     print("image decoded")
-    path = '/var/www/s3/'+str(image_num)+'.png'
+    path = '/s3/'+str(image_num)+'.png'
     cv.imwrite(path, image, [cv.IMWRITE_PNG_COMPRESSION,4])
     image_num += 1
     print("image written")
