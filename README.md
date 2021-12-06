@@ -8,14 +8,6 @@ In order to streamline the process, only one topic was used throughout. This top
 
 The QoS chosen was QoS = 0 or "at most once". This QoS was chosen due to the fact that the classifier is running at a relatively high frame rate. Even a few seconds of exposure creates many images. Using the "fire and forget" method keeps the publisher from getting bogged down with waiting for a response. There will more than likely be several copies of almost the same image sent, so any loss is trivial in this use case.
 
-2. Public Image URLs
-
-[image0](https://w251homework3.s3.amazonaws.com/0.png)
-[image1](https://w251homework3.s3.amazonaws.com/1.png)
-[image2](https://w251homework3.s3.amazonaws.com/2.png)
-[image3](https://w251homework3.s3.amazonaws.com/3.png)
-[image4](https://w251homework3.s3.amazonaws.com/4.png)
-[image5](https://w251homework3.s3.amazonaws.com/5.png)
 
 # Jetson Nano 2G
 
