@@ -74,15 +74,15 @@ The amazon setup involves 4 distinct steps:
 
 The AWS instance is composed of 2 parts
 
--A Mosquitto server
--an image processor contained in processor.py
+- A Mosquitto server
+- an image processor contained in processor.py
 
 Both of these pieces are containerized and deployed into a docker network. **The setup for these containers is executed by the** `amazonsetup.sh` **shell script**.
 
 Images for each of these pieces are contained in the respective Dockerfile
 
--Mosquitto server -> `aws_mqtt_Dockerfile`
--Image processor -> `processor_Dockerfile`
+- Mosquitto server -> `aws_mqtt_Dockerfile`
+- Image processor -> `processor_Dockerfile`
 
 The script `amazonsetup.sh` is below
 
