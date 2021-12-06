@@ -61,7 +61,7 @@ kubectl apply -f repub.yaml
 
 The flow of this cluster is as follows. An image classifier uses the local webcam to scan for faces. Upon detection it clips out the face and sends it in binary as a message to the mosquitto server on the topic "detected". From there it is picked up by the listener for logging purposes, and by the republisher, which passes it along to mqtt broker on the aws instance
 
-#AWS Instance
+# AWS Instance
 
 After setting up the Amazon instance, the shell script `amazonsetup.sh` can be run to set up the receiving side.
 
