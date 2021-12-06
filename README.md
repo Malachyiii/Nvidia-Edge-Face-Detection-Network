@@ -1,6 +1,6 @@
-# W251_Homework3
+# Nvidia Edge Facial Detection
 
-#Homework Questions:
+# Topic Questions:
 
 1. Explain the topics and QoS used.
 
