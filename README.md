@@ -13,26 +13,26 @@ The QoS chosen was QoS = 0 or "at most once". This QoS was chosen due to the fac
 
 The architecture on the Nano 2G is as follows
 
--A Mosquitto server
--A listener at `listener.py`
--A republisher at `repub.py`
--A facial classifier built on top of the OpenCV framework at `classifier.py`
+- A Mosquitto server
+- A listener at `listener.py`
+- A republisher at `repub.py`
+- A facial classifier built on top of the OpenCV framework at `classifier.py`
 
 All 4 of these pieces are containerized and deployed into kubernetes. **The setup for these files can be accomplished by executing the** `run.sh` **shell script**. Teardown is accomplished via the `shutdown.sh` shell script.
 
 Images for each of these pieces are contained in the respective Dockerfile
 
--Mosquitto server -> `broker_Dockerfile`
--Listener -> `listener_Dockerfile`
--Republisher -> `repub_Dockerfile`
--Facial classifier -> `classifier_Dockerfile`
+- Mosquitto server -> `broker_Dockerfile`
+- Listener -> `listener_Dockerfile`
+- Republisher -> `repub_Dockerfile`
+- Facial classifier -> `classifier_Dockerfile`
 
 And are deployed into Kubernetes with the appropriate YAML
 
--Mosquitto server -> `mosquitto.yaml`
--Listener -> `listener.yaml`
--Republisher -> `repub.yaml`
--Facial classifier -> `classifier.yaml`
+- Mosquitto server -> `mosquitto.yaml`
+- Listener -> `listener.yaml`
+- Republisher -> `repub.yaml`
+- Facial classifier -> `classifier.yaml`
 
 The mosquitto server is then exposed with -> `mosquittoService.yaml`
 
