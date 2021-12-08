@@ -1,8 +1,8 @@
-ssh -A ubuntu@ec2-34-218-45-186.us-west-2.compute.amazonaws.com
-cd ~/W251_Homework3
+ssh -A <Your Instance>
+cd <Git Folder>
 sudo su
 
-s3fs -o iam_role="HomeworkRole" -o url="https://s3-us-west-2.amazonaws.com" -o endpoint=us-west-2 -o dbglevel=info -o curldbg -o allow_other -o use_cache=/tmp w251homework3 /var/s3fs-homework
+s3fs -o iam_role=<Your Role> -o url="https://s3-us-west-2.amazonaws.com" -o endpoint=us-west-2 -o dbglevel=info -o curldbg -o allow_other -o use_cache=/tmp <your temp cache> /var/<s3 bucket>
 
 docker build -t malachyiii/aws_broker -f aws_mqtt_Dockerfile .
 docker push malachyiii/aws_broker
